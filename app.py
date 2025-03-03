@@ -16,13 +16,15 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-@app.route('/hello', methods=['POST'])
+@app.route('/add_to_cart_page', methods=['POST'])
 def hello():
-   name = request.form.get('name')
+   p_name = request.form.get('p_name')
+   p_quantity = request.form.get('p_quantity')
+   total_value = request.form.get('total_value')
 
-   if name:
-       print('Request for hello page received with name=%s' % name)
-       return render_template('hello.html', name = name)
+   if p_name:
+       print('Request for hello page received with name=%s' % p_name)
+       return render_template('dd_to_cart_page.html', p_name = p_name, p_quantity=p_quantity,total_value=total_value)
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
