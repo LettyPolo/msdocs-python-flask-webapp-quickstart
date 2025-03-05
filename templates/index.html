@@ -3,7 +3,28 @@
     <title>Hello Azure - Python Quickstart</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-</head>
+  <script>
+    function total(){
+    
+      var product=document.getElementById("p_name").value
+     var quantity=document.getElementById("p_quantity").value
+     var total=0 
+     if (product=="pencil") {
+        total=quantity*4
+      } else if (product=="notebook") {
+        total=quantity*6
+      } else {
+        total=quantity*8
+      }
+      document.getElementById("total_value").value=total
+                }
+      
+
+
+
+  </script>
+
+  </head>
 <html>
    <body>
      <main>
@@ -12,22 +33,26 @@
             <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="display-6 fw-bold text-primary">Welcome to Azure</h1>            
           </div>
-        <form method="post" action="{{url_for('hello')}}">
+        <form method="post" action="{{url_for('dd_to_cart_page')}}">
             <div class="col-md-6 mx-auto text-center">
                 <label for="name" class="form-label fw-bold fs-5">Please select your product</label>
 
                 <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
-                    <input type="text" class="form-control" id="p_name" name="p_name" style="max-width: 256px;">
-                  </div>  
-                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
-                    <input type="text" class="form-control" id="p_quantity" name="p_quantity" style="max-width: 256px;">
-                  </div>  
-                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
-                    <input type="text" class="form-control" id="total_value" name="total_value" style="max-width: 256px;">
+                  <label for="p_name">Choose Product</label>
+                  <select id="p_name" name="p_name" class="form-control" onchange="total()">
+                    <option value="notebook">Note Book</option>
+                    <option value="pencil">pencil</option>
+                    <option value="printerpaper">Printer Paper</option>
+                  </select><br>
+                    <label for="p_quantity">Quantity</label>
+                    <input type="number" class="form-control" id="p_quantity" name="p_quantity" style="max-width: 256px;" onchange="total()" required>
+                   <br>
+                    <label for="total_value">Total</label>
+                  <input type="text" class="form-control" id="total_value" name="total_value" style="max-width: 256px;">
                   </div>  
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
-                  <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Say Hello</button>
+                  <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Add to Shopping Cart</button>
                 </div>            
             </div>
         </form>

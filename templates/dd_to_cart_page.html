@@ -7,8 +7,16 @@
       <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
       <h1 class="display-6 fw-bold text-primary">Welcome to Azure</h1>            
     </div>
-    <p>Product added to cart: {{p_name}}</p>
-  <p>Quantity: {{p_quantity}}</p>
-  <p>Total value:  {{total_value}}</p>
+
+    <form method="post" action="{{url_for('confirm')}}">
+     <p> Product: <input type="tex" class="form-control" id="p_name" name="p_name" value="{{p_name}}" style="max-width: 256px;" readonly></p>
+     <p> Quantity: <input type="tex" class="form-control" id="p_quantity" name="p_quantity" value="{{p_quantity}}" style="max-width: 256px;" readonly></p>
+      <p>Total: <input type="tex" class="form-control" id="total_value" name="total_value" value="{{total_value}}" style="max-width: 256px;" readonly></p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
+        <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Confirm Purchase</button>
+      </div>
+</form>
+
+<a href="{{url_for('index')}}" class="btn btn-primary btn-lg px-4 gap-3">Back</a>
 </main>    
 {% endblock %}
